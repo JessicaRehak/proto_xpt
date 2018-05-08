@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Non Tracked directories
+build/*
+doc/*
+
+# Emacs local settings
+.dir-locals.el
+
+# GGTags
+GPATH
+GRTAGS
+GTAGS
