@@ -1,9 +1,13 @@
 sudo: require
 
 addons:
- apt:
-  packages:
-   - lcov
+  apt:
+    sources:
+      - george-edison55-precise-backports
+    packages:
+      - cmake-data
+      - cmake
+      - lcov
 
 language: cpp
 
