@@ -16,21 +16,27 @@ std::string Point::to_str(int precision) const {
   return output.str();
 }
 
-// template <int dim>
-// Point<dim>& Point<dim>::operator+=(const Coordinates &rhs) {
-//   std::transform(position.begin(), position.end(), rhs.begin(), position.begin(),
-//                  std::plus<float>());
-// }
+bool Point::operator<(const Point &rhs) const noexcept {
+  if (position.first > rhs.position.first) {
+    return false;
+  } else if (position.second > rhs.position.second) {
+    return false;
+  } else if (*this == rhs) {
+    return false;
+  }
+  return true;
+}
 
-// template <int dim>
-// std::string const& Point<dim>::to_str() const {
-//   std::string output = "Point: (";
-//   for (const auto value : position)
-//     output += value + ", ";
-//   output = output.substr(0, output.size() - 2);
-//   output += ")";
-//   return output;
-// }
+bool Point::operator>(const Point &rhs) const noexcept {
+  if (position.first < rhs.position.first) {
+    return false;
+  } else if (position.second < rhs.position.second) {
+    return false;
+  } else if (*this == rhs) {
+    return false;
+  }
+  return true;
+}
 
 } // namespace mesh
 

@@ -16,7 +16,7 @@ struct Point {
   using Coordinates = std::pair<float, float>;
   
   explicit Point(const Coordinates coordinates) : position(coordinates) {};
-  explicit Point(const float, const float);
+  Point(const float, const float);
   ~Point() = default;
   
   Coordinates position;
@@ -32,6 +32,9 @@ struct Point {
 
   inline bool operator!=(const Point &rhs) const noexcept {
     return position != rhs.position; }
+
+  bool operator<(const Point &rhs) const noexcept;
+  bool operator>(const Point &rhs) const noexcept;
   
   // // Move constructor and move assign
   Point(Point&&) = default;
