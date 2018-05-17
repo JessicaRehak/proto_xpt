@@ -1,5 +1,10 @@
 #include <iostream>
 
+#include "mesh/point.h"
+
+#include <array>
+#include <iostream>
+
 #ifdef TEST
 #include <gtest/gtest.h>
 #endif
