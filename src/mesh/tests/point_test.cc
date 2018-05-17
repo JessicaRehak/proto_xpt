@@ -11,6 +11,7 @@ class PointTest : public ::testing::Test {
   xpt::mesh::Point testPoint_gt{3.4, 0.0};
   xpt::mesh::Point testPoint_lt{0.3, -20.0};
   xpt::mesh::Point testPoint_nt{3.0, -40.5}; //not gt or lt
+  xpt::mesh::Point testPoint_nt_2{-45.0, 3.5}; //not gt or lt
   xpt::mesh::Point testPoint_eq{1.0, -10.0};
   xpt::mesh::Point testPoint_ne{3.4, 0.0};
 };
@@ -51,6 +52,8 @@ TEST_F(PointTest, ComparisonOps) {
   ASSERT_FALSE(testPoint_eq < testPoint);
   ASSERT_FALSE(testPoint_nt > testPoint);
   ASSERT_FALSE(testPoint_nt < testPoint);
+  ASSERT_FALSE(testPoint_nt_2 > testPoint);
+  ASSERT_FALSE(testPoint_nt_2 < testPoint);
 }
 
 TEST_F(PointTest, ComparisonEqOps) {
@@ -62,4 +65,6 @@ TEST_F(PointTest, ComparisonEqOps) {
   ASSERT_TRUE(testPoint_eq <= testPoint);
   ASSERT_FALSE(testPoint_nt >= testPoint);
   ASSERT_FALSE(testPoint_nt <= testPoint);
+  ASSERT_FALSE(testPoint_nt_2 >= testPoint);
+  ASSERT_FALSE(testPoint_nt_2 <= testPoint);
 }
