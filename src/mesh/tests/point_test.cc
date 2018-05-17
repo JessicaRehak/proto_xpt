@@ -1,5 +1,6 @@
 #include "../point.h"
 
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <utility>
 
@@ -21,6 +22,10 @@ TEST_F(PointTest, FloatConstructor) {
   ASSERT_EQ(testPoint_c.position, position);
 }
 
-TEST_F(PointTest, toStr) {
-  ASSERT_EQ(testPoint.to_str(), "(1.0, -10.0)");
+TEST_F(PointTest, toStr_default) {
+  ASSERT_EQ(testPoint.to_str(), "(1.00, -10.00)");
+}
+
+TEST_F(PointTest, toStr_specific) {
+  ASSERT_EQ(testPoint.to_str(4), "(1.0000, -10.0000)");
 }

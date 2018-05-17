@@ -1,6 +1,8 @@
 #ifndef PROTO_XPT_MESH_POINT_H_
 #define PROTO_XPT_MESH_POINT_H_
 
+#include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -19,7 +21,7 @@ struct Point {
   
   Coordinates position;
 
-  std::string to_str() const;
+  std::string to_str(int precision = 2) const;
   
   // // Arithmetic Operators
   // Point& operator+=(const Coordinates &rhs);
