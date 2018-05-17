@@ -17,7 +17,7 @@ struct Point {
   
   explicit Point(const Coordinates coordinates) : position(coordinates) {};
   explicit Point(const float, const float);
-  //~Point() = default;
+  ~Point() = default;
   
   Coordinates position;
 
@@ -27,20 +27,19 @@ struct Point {
   // Point& operator+=(const Coordinates &rhs);
   
   // // Comparison operators
-  // inline bool operator==(const Point &rhs) const {
-  //   return this.position == rhs.position; }
+  inline bool operator==(const Point &rhs) const noexcept {
+    return position == rhs.position; }
 
-  // inline bool operator!=(const Point &rhs) const {
-  //   return this.position != rhs.position; }
+  inline bool operator!=(const Point &rhs) const noexcept {
+    return position != rhs.position; }
   
   // // Move constructor and move assign
-  // Point(Point&&) = default;
-  // Point& operator=(Point&&) = default;
+  Point(Point&&) = default;
+  Point& operator=(Point&&) = default;
   
   // // Copy constructor and copy assign
-  // Point(const Point&) = default;
-  // Point& operator=(const Point&) = default;
-  
+  Point(const Point&) = default;
+  Point& operator=(const Point&) = default;
 };
 
 } // namespace mesh
