@@ -52,3 +52,14 @@ TEST_F(PointTest, ComparisonOps) {
   ASSERT_FALSE(testPoint_nt > testPoint);
   ASSERT_FALSE(testPoint_nt < testPoint);
 }
+
+TEST_F(PointTest, ComparisonEqOps) {
+  ASSERT_TRUE(testPoint_gt >= testPoint);
+  ASSERT_TRUE(testPoint_lt <= testPoint);
+  ASSERT_FALSE(testPoint_gt <= testPoint);
+  ASSERT_FALSE(testPoint_lt >= testPoint);
+  ASSERT_TRUE(testPoint_eq >= testPoint);
+  ASSERT_TRUE(testPoint_eq <= testPoint);
+  ASSERT_FALSE(testPoint_nt >= testPoint);
+  ASSERT_FALSE(testPoint_nt <= testPoint);
+}

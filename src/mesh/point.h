@@ -35,6 +35,10 @@ struct Point {
 
   bool operator<(const Point &rhs) const noexcept;
   bool operator>(const Point &rhs) const noexcept;
+  inline bool operator<=(const Point &rhs) const noexcept {
+    return *this < rhs || *this == rhs;};
+  inline bool operator>=(const Point &rhs) const noexcept {
+    return *this > rhs || *this == rhs;};
   
   // // Move constructor and move assign
   Point(Point&&) = default;
