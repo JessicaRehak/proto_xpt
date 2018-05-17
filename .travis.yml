@@ -15,7 +15,11 @@ compiler: gcc
 
 before_install:
  # Install protobuf 3
- - sudo apt-get install protobuf
+ - wget https://github.com/google/protobuf/releases/download/v3.5.1/protobuf-cpp-3.5.1.tar.gz
+ - sudo tar xf protobuf-cpp-3.5.1.tar.gz
+ - cd protobuf-3.5.1
+ - sudo make
+ - sudo make install
  # Install GoogleTest/Mock
  - sudo apt-get install -y libgtest-dev valgrind
  - sudo wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz
