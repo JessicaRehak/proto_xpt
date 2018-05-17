@@ -40,6 +40,12 @@ Point Point::operator+(const Point &rhs) const {
   return temp += rhs;
 }
 
+// Equivalence Operators
+
+// bool Point::operator==(float r) const {
+//   return true;
+// }
+
 // Comparison Operators
 
 bool Point::operator<(const Point &rhs) const noexcept {

@@ -1,6 +1,8 @@
 #ifndef PROTO_XPT_MESH_POINT_H_
 #define PROTO_XPT_MESH_POINT_H_
 
+#include <cmath>
+
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -20,6 +22,10 @@ struct Point {
   ~Point() = default;
   
   Coordinates position;
+  float& x_{position.first};
+  float& y_{position.second};
+
+  float Length() const { return std::sqrt(std::pow(x_, 2) + std::pow(y_, 2)); };
 
   std::string to_str(int precision = 2) const;
   
@@ -36,6 +42,10 @@ struct Point {
 
   inline bool operator!=(const Point &rhs) const noexcept {
     return position != rhs.position; }
+
+  // Checks x^2 + y^2 == r^2
+  //bool operator==(float r) const;
+  //bool operator!=(float r) const { return !(*this == r); };
 
   // Comparison operators
   bool operator<(const Point &rhs) const noexcept;

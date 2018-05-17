@@ -1,5 +1,7 @@
 #include "../point.h"
 
+#include <cmath>
+
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <utility>
@@ -26,6 +28,11 @@ TEST_F(PointTest, FloatConstructor) {
   std::pair<float, float> position{1.0, -4.0};
   xpt::mesh::Point testPoint_c{1.0, -4.0};
   ASSERT_EQ(testPoint_c.position, position);
+}
+
+TEST_F(PointTest, Length) {
+  float ans = std::sqrt(101);
+  ASSERT_EQ(testPoint.Length(), ans);
 }
 
 TEST_F(PointTest, toStr_default) {
