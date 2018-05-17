@@ -23,16 +23,21 @@ struct Point {
 
   std::string to_str(int precision = 2) const;
   
-  // // Arithmetic Operators
-  // Point& operator+=(const Coordinates &rhs);
+  // Arithmetic Operators
+  Point& operator+=(const Coordinates &rhs);
+  Point& operator+=(const Point &rhs);
+
+  Point operator+(const Coordinates &rhs) const;
+  Point operator+(const Point &rhs) const;
   
-  // // Comparison operators
+  // Equivalence operators
   inline bool operator==(const Point &rhs) const noexcept {
     return position == rhs.position; }
 
   inline bool operator!=(const Point &rhs) const noexcept {
     return position != rhs.position; }
 
+  // Comparison operators
   bool operator<(const Point &rhs) const noexcept;
   bool operator>(const Point &rhs) const noexcept;
   inline bool operator<=(const Point &rhs) const noexcept {

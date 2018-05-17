@@ -68,3 +68,59 @@ TEST_F(PointTest, ComparisonEqOps) {
   ASSERT_FALSE(testPoint_nt_2 >= testPoint);
   ASSERT_FALSE(testPoint_nt_2 <= testPoint);
 }
+
+TEST_F(PointTest, PlusEqOpPair) {
+  std::pair<float, float> p2{10.0, 20.0};
+  std::pair<float, float> ans{testPoint.position.first + p2.first,
+        testPoint.position.second + p2.second};
+  std::pair<float, float> ans_2{testPoint.position.first + 3*p2.first,
+        testPoint.position.second + 3*p2.second};
+  testPoint += p2;
+  ASSERT_EQ(testPoint.position, ans);
+  // Check chaining
+  (testPoint += p2) += p2;
+  ASSERT_EQ(testPoint.position, ans_2);
+}
+
+TEST_F(PointTest, PlusEqOpPoint) {
+  std::pair<float, float> p2{10.0, 20.0};
+  xpt::mesh::Point point2{p2};
+  std::pair<float, float> ans{testPoint.position.first + p2.first,
+        testPoint.position.second + p2.second};
+  std::pair<float, float> ans_2{testPoint.position.first + 3*p2.first,
+        testPoint.position.second + 3*p2.second};
+  testPoint += point2;
+  ASSERT_EQ(testPoint.position, ans);
+  // Check chaining
+  (testPoint += point2) += point2;
+  ASSERT_EQ(testPoint.position, ans_2);
+}
+
+TEST_F(PointTest, PlusOpPair) {
+  std::pair<float, float> p2{10.0, 20.0};
+  std::pair<float, float> ans{testPoint.position.first + p2.first,
+        testPoint.position.second + p2.second};
+  std::pair<float, float> ans_2{testPoint.position.first + 2*p2.first,
+        testPoint.position.second + 2*p2.second};
+
+  xpt::mesh::Point new_point = testPoint + p2;
+  xpt::mesh::Point chain_point = (testPoint + p2) + p2;
+  
+  ASSERT_EQ(new_point.position, ans);
+  ASSERT_EQ(chain_point.position, ans_2);
+}
+
+TEST_F(PointTest, PlusOpPoint) {
+  std::pair<float, float> p2{10.0, 20.0};
+  xpt::mesh::Point point2{p2};
+  std::pair<float, float> ans{testPoint.position.first + p2.first,
+        testPoint.position.second + p2.second};
+  std::pair<float, float> ans_2{testPoint.position.first + 2*p2.first,
+        testPoint.position.second + 2*p2.second};
+
+  xpt::mesh::Point new_point = testPoint + point2;
+  xpt::mesh::Point chain_point = (testPoint + point2) + point2;
+  
+  ASSERT_EQ(new_point.position, ans);
+  ASSERT_EQ(chain_point.position, ans_2);
+}

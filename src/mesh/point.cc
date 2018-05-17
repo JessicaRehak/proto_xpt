@@ -16,6 +16,32 @@ std::string Point::to_str(int precision) const {
   return output.str();
 }
 
+// Arithmetic Operators
+
+Point& Point::operator+=(const Coordinates &rhs) {
+  (*this).position.first += rhs.first;
+  (*this).position.second += rhs.second;
+  return *this;
+}
+
+Point& Point::operator+=(const Point &rhs) {
+  (*this).position.first += rhs.position.first;
+  (*this).position.second += rhs.position.second;
+  return *this;
+}
+
+Point Point::operator+(const Coordinates &rhs) const {
+  Point temp(*this);
+  return temp += rhs;
+}
+
+Point Point::operator+(const Point &rhs) const {
+  Point temp(*this);
+  return temp += rhs;
+}
+
+// Comparison Operators
+
 bool Point::operator<(const Point &rhs) const noexcept {
   if (position.first > rhs.position.first) {
     return false;
