@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include <array>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <utility>
@@ -14,6 +15,7 @@ class PointTest : public ::testing::Test {
 };
 
 class PointCompareTest : public PointTest {
+  // Fixture for testing comparison operators
  protected:
   float gt_x = 2.23*x, lt_x = 0.534*x;
   float gt_y = -2.394*y, lt_y = 10.56*y;
@@ -23,6 +25,23 @@ class PointCompareTest : public PointTest {
   xpt::mesh::Point testPoint_nt_2{lt_x, gt_y}; //not gt or lt
   xpt::mesh::Point testPoint_eq{x, y};
   xpt::mesh::Point testPoint_ne{3.4, 0.0};
+};
+
+class PointShiftTest : public PointTest {
+  // Fixture for comparing shift operators (arithmetic)
+ protected:
+  xpt::mesh::Coordinate p2{10.0, 20.0}; // Shift point
+  xpt::mesh::Point shift_point{p2};
+  xpt::mesh::Point refl_point{-x, -y};
+  // all in format testCoord_xs where x is the number of shifts by p2
+  xpt::mesh::Coordinate testCoord_1s{x + p2.first, y + p2.second};
+  xpt::mesh::Coordinate testCoord_2s{x + 2*p2.first, y + 2*p2.second};
+  xpt::mesh::Coordinate testCoord_3s{x + 3*p2.first, y + 3*p2.second};
+  xpt::mesh::Coordinate testCoord_4s{x + 4*p2.first, y + 4*p2.second};
+
+  // For ease of writing tests these are stored in an array
+  std::array<xpt::mesh::Coordinate, 5> testCoord_s{testPoint.position_,
+    testCoord_1s, testCoord_2s, testCoord_3s, testCoord_4s};
 };
 
 TEST_F(PointTest, PairConstructor) {
@@ -101,50 +120,44 @@ TEST_F(PointCompareTest, ComparisonEqOps) {
   ASSERT_FALSE(testPoint_nt_2 <= testPoint);
 }
 
-TEST_F(PointTest, PlusEqOpPair) {
-  xpt::mesh::Coordinate p2{10.0, 20.0};
-  xpt::mesh::Coordinate ans{x + p2.first, y + p2.second};
-  xpt::mesh::Coordinate ans_2{x + 3*p2.first, y + 3*p2.second};
-  
+TEST_F(PointShiftTest, UnaryMinusOp) {
+  ASSERT_EQ(-testPoint, refl_point);
+}
+
+TEST_F(PointShiftTest, PlusMinusBinOpsPair) {
   testPoint += p2;
-  ASSERT_EQ(testPoint.position_, ans);
+  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
   (testPoint += p2) += p2;
-  ASSERT_EQ(testPoint.position_, ans_2);
+  ASSERT_EQ(testPoint.position_, testCoord_s[3]);
+  (testPoint -= p2) -= p2;
+  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
+  testPoint -= p2;
+  ASSERT_EQ(testPoint.position_, testCoord_s[0]);
 }
 
-TEST_F(PointTest, PlusEqOpPoint) {
-  xpt::mesh::Coordinate p2{10.0, 20.0};
-  xpt::mesh::Point point2{p2};
-  xpt::mesh::Coordinate ans{x + p2.first, y + p2.second};
-  xpt::mesh::Coordinate ans_2{x + 3*p2.first, y + 3*p2.second};
-  testPoint += point2;
-  ASSERT_EQ(testPoint.position_, ans);
+TEST_F(PointShiftTest, PlusMinusBinOpsPoint) {
+
+  testPoint += shift_point;
+  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
   // Check chaining
-  (testPoint += point2) += point2;
-  ASSERT_EQ(testPoint.position_, ans_2);
+  (testPoint += shift_point) += shift_point;
+  ASSERT_EQ(testPoint.position_, testCoord_s[3]);
 }
 
-TEST_F(PointTest, PlusOpPair) {
-  xpt::mesh::Coordinate p2{10.0, 20.0};
-  xpt::mesh::Coordinate ans{x + p2.first, y + p2.second};
-  xpt::mesh::Coordinate ans_2{x + 2*p2.first, y + 2*p2.second};
-
+TEST_F(PointShiftTest, PlusMinusOpsPair) {
   xpt::mesh::Point new_point = testPoint + p2;
   xpt::mesh::Point chain_point = (testPoint + p2) + p2;
   
-  ASSERT_EQ(new_point.position_, ans);
-  ASSERT_EQ(chain_point.position_, ans_2);
+  ASSERT_EQ(new_point.position_, testCoord_s[1]);
+  ASSERT_EQ(chain_point.position_, testCoord_s[2]);
 }
 
-TEST_F(PointTest, PlusOpPoint) {
-  xpt::mesh::Coordinate p2{10.0, 20.0};
-  xpt::mesh::Point point2{p2};
-  xpt::mesh::Coordinate ans{x +  p2.first, y + p2.second};
-  xpt::mesh::Coordinate ans_2{x + 2*p2.first, y + 2*p2.second};
-
-  xpt::mesh::Point new_point = testPoint + point2;
-  xpt::mesh::Point chain_point = (testPoint + point2) + point2;
+TEST_F(PointShiftTest, PlusMinusOpsPoint) {
+  xpt::mesh::Point new_point = testPoint + shift_point;
+  xpt::mesh::Point chain_point = (testPoint + shift_point) + shift_point;
   
-  ASSERT_EQ(new_point.position_, ans);
-  ASSERT_EQ(chain_point.position_, ans_2);
+  ASSERT_EQ(new_point.position_, testCoord_s[1]);
+  ASSERT_EQ(chain_point.position_, testCoord_s[2]);
 }
+
+

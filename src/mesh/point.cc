@@ -18,6 +18,11 @@ std::string Point::to_str(int precision) const {
 
 // Arithmetic Operators
 
+Point Point::operator-() const {
+  Point temp{-(*this).x_, -(*this).y_};
+  return temp;
+}
+
 Point& Point::operator+=(const Coordinate &rhs) {
   (*this).position_.first += rhs.first;
   (*this).position_.second += rhs.second;
@@ -27,6 +32,17 @@ Point& Point::operator+=(const Coordinate &rhs) {
 Point& Point::operator+=(const Point &rhs) {
   (*this).position_.first += rhs.position_.first;
   (*this).position_.second += rhs.position_.second;
+  return *this;
+}
+
+Point& Point::operator-=(const Coordinate &rhs) {
+  (*this).position_.first -= rhs.first;
+  (*this).position_.second -= rhs.second;
+  return *this;
+}
+
+Point& Point::operator-=(const Point &rhs) {
+  *this += -rhs;
   return *this;
 }
 
