@@ -19,15 +19,15 @@ struct Point {
   // 2D Point struct
   //using Coordinate = std::pair<float, float>;
   
-  explicit Point(const Coordinate coordinates) : position_(coordinates) {};
+  explicit Point(const Coordinate coordinates) : position(coordinates) {};
   Point(const float, const float);
   ~Point() = default;
   
-  Coordinate position_;
-  float& x_{position_.first};
-  float& y_{position_.second};
+  Coordinate position;
+  float& x{position.first};
+  float& y{position.second};
 
-  float Length() const { return std::sqrt(std::pow(x_, 2) + std::pow(y_, 2)); };
+  float Length() const { return std::sqrt(std::pow(x, 2) + std::pow(y, 2)); };
 
   std::string to_str(int precision = 2) const;
   
@@ -46,10 +46,10 @@ struct Point {
   
   // Equivalence operators
   inline bool operator==(const Point &rhs) const noexcept {
-    return position_ == rhs.position_; }
+    return position == rhs.position; }
 
   inline bool operator!=(const Point &rhs) const noexcept {
-    return position_ != rhs.position_; }
+    return position != rhs.position; }
 
   // Checks x^2 + y^2 == r^2
   bool operator==(float r) const { return (*this).Length() == r; };

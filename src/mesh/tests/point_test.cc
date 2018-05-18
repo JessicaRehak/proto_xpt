@@ -40,20 +40,20 @@ class PointShiftTest : public PointTest {
   xpt::mesh::Coordinate testCoord_4s{x + 4*p2.first, y + 4*p2.second};
 
   // For ease of writing tests these are stored in an array
-  std::array<xpt::mesh::Coordinate, 5> testCoord_s{testPoint.position_,
+  std::array<xpt::mesh::Coordinate, 5> testCoord_s{testPoint.position,
     testCoord_1s, testCoord_2s, testCoord_3s, testCoord_4s};
 };
 
 TEST_F(PointTest, PairConstructor) {
   xpt::mesh::Coordinate position{1.0, -4.0};
   xpt::mesh::Point testPoint_c{position};
-  ASSERT_EQ(testPoint_c.position_, position);
+  ASSERT_EQ(testPoint_c.position, position);
  }
 
 TEST_F(PointTest, FloatConstructor) {
   xpt::mesh::Coordinate position{1.0, -4.0};
   xpt::mesh::Point testPoint_c{1.0, -4.0};
-  ASSERT_EQ(testPoint_c.position_, position);
+  ASSERT_EQ(testPoint_c.position, position);
 }
 
 TEST_F(PointTest, Length) {
@@ -65,10 +65,10 @@ TEST_F(PointTest, Accessors) {
   xpt::mesh::Coordinate ans{3.0, -10.0};
   xpt::mesh::Coordinate ans2{3.0, 12.7};
   
-  testPoint.x_ = 3.0;
-  ASSERT_EQ(testPoint.position_, ans);
-  testPoint.y_ = 12.7;
-  ASSERT_EQ(testPoint.position_, ans2);
+  testPoint.x = 3.0;
+  ASSERT_EQ(testPoint.position, ans);
+  testPoint.y = 12.7;
+  ASSERT_EQ(testPoint.position, ans2);
 }
 
 TEST_F(PointTest, toStr_default) {
@@ -126,38 +126,38 @@ TEST_F(PointShiftTest, UnaryMinusOp) {
 
 TEST_F(PointShiftTest, PlusMinusBinOpsPair) {
   testPoint += p2;
-  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
+  ASSERT_EQ(testPoint.position, testCoord_s[1]);
   (testPoint += p2) += p2;
-  ASSERT_EQ(testPoint.position_, testCoord_s[3]);
+  ASSERT_EQ(testPoint.position, testCoord_s[3]);
   (testPoint -= p2) -= p2;
-  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
+  ASSERT_EQ(testPoint.position, testCoord_s[1]);
   testPoint -= p2;
-  ASSERT_EQ(testPoint.position_, testCoord_s[0]);
+  ASSERT_EQ(testPoint.position, testCoord_s[0]);
 }
 
 TEST_F(PointShiftTest, PlusMinusBinOpsPoint) {
 
   testPoint += shift_point;
-  ASSERT_EQ(testPoint.position_, testCoord_s[1]);
+  ASSERT_EQ(testPoint.position, testCoord_s[1]);
   // Check chaining
   (testPoint += shift_point) += shift_point;
-  ASSERT_EQ(testPoint.position_, testCoord_s[3]);
+  ASSERT_EQ(testPoint.position, testCoord_s[3]);
 }
 
 TEST_F(PointShiftTest, PlusMinusOpsPair) {
   xpt::mesh::Point new_point = testPoint + p2;
   xpt::mesh::Point chain_point = (testPoint + p2) + p2;
   
-  ASSERT_EQ(new_point.position_, testCoord_s[1]);
-  ASSERT_EQ(chain_point.position_, testCoord_s[2]);
+  ASSERT_EQ(new_point.position, testCoord_s[1]);
+  ASSERT_EQ(chain_point.position, testCoord_s[2]);
 }
 
 TEST_F(PointShiftTest, PlusMinusOpsPoint) {
   xpt::mesh::Point new_point = testPoint + shift_point;
   xpt::mesh::Point chain_point = (testPoint + shift_point) + shift_point;
   
-  ASSERT_EQ(new_point.position_, testCoord_s[1]);
-  ASSERT_EQ(chain_point.position_, testCoord_s[2]);
+  ASSERT_EQ(new_point.position, testCoord_s[1]);
+  ASSERT_EQ(chain_point.position, testCoord_s[2]);
 }
 
 
