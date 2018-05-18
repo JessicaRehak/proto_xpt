@@ -5,32 +5,32 @@ namespace xpt {
 namespace mesh {
 
 Point::Point(const float x, const float y) {
-  position = {x, y};
+  position_ = {x, y};
 }
 
 std::string Point::to_str(int precision) const {
   // Print position with given precision
   std::ostringstream output;
   output << std::fixed << std::setprecision(precision)
-         << "(" << position.first << ", " << position.second << ")";
+         << "(" << position_.first << ", " << position_.second << ")";
   return output.str();
 }
 
 // Arithmetic Operators
 
-Point& Point::operator+=(const Coordinates &rhs) {
-  (*this).position.first += rhs.first;
-  (*this).position.second += rhs.second;
+Point& Point::operator+=(const Coordinate &rhs) {
+  (*this).position_.first += rhs.first;
+  (*this).position_.second += rhs.second;
   return *this;
 }
 
 Point& Point::operator+=(const Point &rhs) {
-  (*this).position.first += rhs.position.first;
-  (*this).position.second += rhs.position.second;
+  (*this).position_.first += rhs.position_.first;
+  (*this).position_.second += rhs.position_.second;
   return *this;
 }
 
-Point Point::operator+(const Coordinates &rhs) const {
+Point Point::operator+(const Coordinate &rhs) const {
   Point temp(*this);
   return temp += rhs;
 }
@@ -40,18 +40,12 @@ Point Point::operator+(const Point &rhs) const {
   return temp += rhs;
 }
 
-// Equivalence Operators
-
-// bool Point::operator==(float r) const {
-//   return true;
-// }
-
 // Comparison Operators
 
 bool Point::operator<(const Point &rhs) const noexcept {
-  if (position.first > rhs.position.first) {
+  if (position_.first > rhs.position_.first) {
     return false;
-  } else if (position.second > rhs.position.second) {
+  } else if (position_.second > rhs.position_.second) {
     return false;
   } else if (*this == rhs) {
     return false;
@@ -60,9 +54,9 @@ bool Point::operator<(const Point &rhs) const noexcept {
 }
 
 bool Point::operator>(const Point &rhs) const noexcept {
-  if (position.first < rhs.position.first) {
+  if (position_.first < rhs.position_.first) {
     return false;
-  } else if (position.second < rhs.position.second) {
+  } else if (position_.second < rhs.position_.second) {
     return false;
   } else if (*this == rhs) {
     return false;
