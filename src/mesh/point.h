@@ -13,9 +13,11 @@ namespace xpt {
 
 namespace mesh {
 
+using Coordinate = std::pair<float, float>;
+
 struct Point {
   // 2D Point struct
-  using Coordinate = std::pair<float, float>;
+  //using Coordinate = std::pair<float, float>;
   
   explicit Point(const Coordinate coordinates) : position_(coordinates) {};
   Point(const float, const float);
