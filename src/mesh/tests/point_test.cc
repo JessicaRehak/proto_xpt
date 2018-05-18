@@ -40,7 +40,7 @@ class PointShiftTest : public PointTest {
   xpt::mesh::Coordinate testCoord_4s{x + 4*p2.first, y + 4*p2.second};
 
   // For ease of writing tests these are stored in an array
-  std::array<xpt::mesh::Coordinate, 5> testCoord_s{testPoint.position,
+  std::array<xpt::mesh::Coordinate, 5> testCoord_s = {testPoint.position,
     testCoord_1s, testCoord_2s, testCoord_3s, testCoord_4s};
 };
 
