@@ -143,6 +143,10 @@ TEST_F(PointShiftTest, PlusMinusBinOpsPoint) {
   // Check chaining
   (testPoint += shift_point) += shift_point;
   ASSERT_EQ(testPoint.position, testCoord_s[3]);
+  (testPoint -= shift_point) -= shift_point;
+  ASSERT_EQ(testPoint.position, testCoord_s[1]);
+  testPoint -= shift_point;
+  ASSERT_EQ(testPoint.position, testCoord_s[0]);
 }
 
 TEST_F(PointShiftTest, PlusMinusOpsPair) {
