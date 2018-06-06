@@ -152,17 +152,25 @@ TEST_F(PointShiftTest, PlusMinusBinOpsPoint) {
 TEST_F(PointShiftTest, PlusMinusOpsPair) {
   xpt::mesh::Point new_point = testPoint + p2;
   xpt::mesh::Point chain_point = (testPoint + p2) + p2;
+  xpt::mesh::Point zero_point = new_point - p2;
+  xpt::mesh::Point zero_chain_point = (chain_point - p2) - p2;
   
   ASSERT_EQ(new_point.position, testCoord_s[1]);
   ASSERT_EQ(chain_point.position, testCoord_s[2]);
+  ASSERT_EQ(zero_point.position, testCoord_s[0]);
+  ASSERT_EQ(zero_chain_point.position, testCoord_s[0]);
 }
 
 TEST_F(PointShiftTest, PlusMinusOpsPoint) {
   xpt::mesh::Point new_point = testPoint + shift_point;
   xpt::mesh::Point chain_point = (testPoint + shift_point) + shift_point;
+  xpt::mesh::Point zero_point = new_point - shift_point;
+  xpt::mesh::Point zero_chain_point = (chain_point - shift_point) - shift_point;
   
   ASSERT_EQ(new_point.position, testCoord_s[1]);
   ASSERT_EQ(chain_point.position, testCoord_s[2]);
+  ASSERT_EQ(zero_point.position, testCoord_s[0]);
+  ASSERT_EQ(zero_chain_point.position, testCoord_s[0]);
 }
 
 

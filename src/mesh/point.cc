@@ -56,6 +56,16 @@ Point Point::operator+(const Point &rhs) const {
   return temp += rhs;
 }
 
+Point Point::operator-(const Coordinate &rhs) const {
+  Point temp(*this);
+  return temp -= rhs;
+}
+
+Point Point::operator-(const Point &rhs) const {
+  Point temp(*this);
+  return temp -= rhs;
+}
+
 // Comparison Operators
 
 bool Point::operator<(const Point &rhs) const noexcept {
