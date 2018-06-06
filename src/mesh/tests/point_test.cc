@@ -199,3 +199,19 @@ TEST_F(PointShiftTest, MultiplyEqOps) {
   ASSERT_EQ(testPoint.position, testCoord_m[2]);
 }
 
+TEST_F(PointShiftTest, DivideOps) {
+  xpt::mesh::Point new_point = testPoint / 0.5;
+  xpt::mesh::Point chain_point = (testPoint / 0.5) / 0.5;
+
+  ASSERT_EQ(new_point.position, testCoord_m[2]);
+  ASSERT_EQ(chain_point.position, testCoord_m[4]);
+}
+
+
+TEST_F(PointShiftTest, DivideEqOps) {
+  testPoint /= 0.5;
+  ASSERT_EQ(testPoint.position, testCoord_m[2]);
+  (testPoint /= 0.5) /= 2;
+  ASSERT_EQ(testPoint.position, testCoord_m[2]);
+}
+
