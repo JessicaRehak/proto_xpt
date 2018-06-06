@@ -30,6 +30,7 @@ class PointCompareTest : public PointTest {
 class PointShiftTest : public PointTest {
   // Fixture for comparing shift operators (arithmetic)
  protected:
+  xpt::mesh::Coordinate origin{0.0, 0.0};
   xpt::mesh::Coordinate p2{10.0, 20.0}; // Shift point
   xpt::mesh::Point shift_point{p2};
   xpt::mesh::Point refl_point{-x, -y};
@@ -39,10 +40,18 @@ class PointShiftTest : public PointTest {
   xpt::mesh::Coordinate testCoord_3s{x + 3*p2.first, y + 3*p2.second};
   xpt::mesh::Coordinate testCoord_4s{x + 4*p2.first, y + 4*p2.second};
 
+  xpt::mesh::Coordinate testCoord_2m{2*x, 2*y};
+  xpt::mesh::Coordinate testCoord_3m{3*x, 3*y};
+  xpt::mesh::Coordinate testCoord_4m{4*x, 4*y};
+
   // For ease of writing tests these are stored in an array
   std::array<xpt::mesh::Coordinate, 5>
   testCoord_s = {{testPoint.position, testCoord_1s, testCoord_2s,
                   testCoord_3s, testCoord_4s}};
+
+  std::array<xpt::mesh::Coordinate, 5>
+  testCoord_m = {{origin, testPoint.position, testCoord_2m,
+                  testCoord_3m, testCoord_4m}};
 };
 
 TEST_F(PointTest, PairConstructor) {
@@ -173,4 +182,20 @@ TEST_F(PointShiftTest, PlusMinusOpsPoint) {
   ASSERT_EQ(zero_chain_point.position, testCoord_s[0]);
 }
 
+TEST_F(PointShiftTest, MultiplyOps) {
+  xpt::mesh::Point new_point = testPoint * 2;
+  xpt::mesh::Point origin = testPoint * 0.0;
+  xpt::mesh::Point chain_point = (testPoint * 2) * 2;
+
+  ASSERT_EQ(new_point.position, testCoord_m[2]);
+  ASSERT_EQ(origin.position, testCoord_m[0]);
+  ASSERT_EQ(chain_point.position, testCoord_m[4]);
+}
+
+TEST_F(PointShiftTest, MultiplyEqOps) {
+  testPoint *= 2;
+  ASSERT_EQ(testPoint.position, testCoord_m[2]);
+  (testPoint *= 0.5) *= 2;
+  ASSERT_EQ(testPoint.position, testCoord_m[2]);
+}
 

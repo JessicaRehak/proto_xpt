@@ -40,13 +40,16 @@ struct Point {
 
   Point& operator-=(const Coordinate &rhs);
   Point& operator-=(const Point &rhs);
+
+  Point& operator*=(const float rhs);
   
   Point operator+(const Coordinate &rhs) const;
   Point operator+(const Point &rhs) const;
 
   Point operator-(const Coordinate &rhs) const;
   Point operator-(const Point &rhs) const;
-  
+
+  Point operator*(const float rhs) const;
   
   // Equivalence operators
   inline bool operator==(const Point &rhs) const noexcept {
