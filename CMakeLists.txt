@@ -14,11 +14,11 @@ find_package(Protobuf REQUIRED)
 find_package(GTest REQUIRED)
 find_package(GMock REQUIRED)
 
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS
-  "${CMAKE_SOURCE_DIR}/msh/mesh2dcartesian.proto")
+# protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS
+#   "${CMAKE_SOURCE_DIR}/msh/mesh2dcartesian.proto")
 
 file(GLOB_RECURSE sources "src/*.cpp" "src/*.cc")
-list(APPEND sources ${PROTO_SRCS} ${PROTO_HDRS})
+#list(APPEND sources ${PROTO_SRCS} ${PROTO_HDRS})
 set(testing_sources ${sources})
 list(FILTER sources EXCLUDE REGEX ".(/tests/).")
 
