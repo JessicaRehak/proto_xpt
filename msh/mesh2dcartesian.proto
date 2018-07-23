@@ -1,4 +1,5 @@
 syntax = "proto3";
+package proto_xpt_protobuf;
 
 message Mesh2DCartesian {
   float x_min = 1;

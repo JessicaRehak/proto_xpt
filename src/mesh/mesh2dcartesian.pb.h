@@ -45,6 +45,7 @@ struct TableStruct {
 };
 void AddDescriptors();
 }  // namespace protobuf_mesh2dcartesian_2eproto
+namespace proto_xpt_protobuf {
 class Mesh2DCartesian;
 class Mesh2DCartesianDefaultTypeInternal;
 extern Mesh2DCartesianDefaultTypeInternal _Mesh2DCartesian_default_instance_;
@@ -54,17 +55,19 @@ extern Mesh2DCartesian_NodeDefaultTypeInternal _Mesh2DCartesian_Node_default_ins
 class Mesh2DCartesian_Triangle;
 class Mesh2DCartesian_TriangleDefaultTypeInternal;
 extern Mesh2DCartesian_TriangleDefaultTypeInternal _Mesh2DCartesian_Triangle_default_instance_;
+}  // namespace proto_xpt_protobuf
 namespace google {
 namespace protobuf {
-template<> ::Mesh2DCartesian* Arena::CreateMaybeMessage<::Mesh2DCartesian>(Arena*);
-template<> ::Mesh2DCartesian_Node* Arena::CreateMaybeMessage<::Mesh2DCartesian_Node>(Arena*);
-template<> ::Mesh2DCartesian_Triangle* Arena::CreateMaybeMessage<::Mesh2DCartesian_Triangle>(Arena*);
+template<> ::proto_xpt_protobuf::Mesh2DCartesian* Arena::CreateMaybeMessage<::proto_xpt_protobuf::Mesh2DCartesian>(Arena*);
+template<> ::proto_xpt_protobuf::Mesh2DCartesian_Node* Arena::CreateMaybeMessage<::proto_xpt_protobuf::Mesh2DCartesian_Node>(Arena*);
+template<> ::proto_xpt_protobuf::Mesh2DCartesian_Triangle* Arena::CreateMaybeMessage<::proto_xpt_protobuf::Mesh2DCartesian_Triangle>(Arena*);
 }  // namespace protobuf
 }  // namespace google
+namespace proto_xpt_protobuf {
 
 // ===================================================================
 
-class Mesh2DCartesian_Node : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Mesh2DCartesian.Node) */ {
+class Mesh2DCartesian_Node : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto_xpt_protobuf.Mesh2DCartesian.Node) */ {
  public:
   Mesh2DCartesian_Node();
   virtual ~Mesh2DCartesian_Node();
@@ -163,7 +166,7 @@ class Mesh2DCartesian_Node : public ::google::protobuf::Message /* @@protoc_inse
   float y() const;
   void set_y(float value);
 
-  // @@protoc_insertion_point(class_scope:Mesh2DCartesian.Node)
+  // @@protoc_insertion_point(class_scope:proto_xpt_protobuf.Mesh2DCartesian.Node)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -174,7 +177,7 @@ class Mesh2DCartesian_Node : public ::google::protobuf::Message /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class Mesh2DCartesian_Triangle : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Mesh2DCartesian.Triangle) */ {
+class Mesh2DCartesian_Triangle : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto_xpt_protobuf.Mesh2DCartesian.Triangle) */ {
  public:
   Mesh2DCartesian_Triangle();
   virtual ~Mesh2DCartesian_Triangle();
@@ -273,7 +276,7 @@ class Mesh2DCartesian_Triangle : public ::google::protobuf::Message /* @@protoc_
   ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
       mutable_nodes();
 
-  // @@protoc_insertion_point(class_scope:Mesh2DCartesian.Triangle)
+  // @@protoc_insertion_point(class_scope:proto_xpt_protobuf.Mesh2DCartesian.Triangle)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
@@ -284,7 +287,7 @@ class Mesh2DCartesian_Triangle : public ::google::protobuf::Message /* @@protoc_
 };
 // -------------------------------------------------------------------
 
-class Mesh2DCartesian : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Mesh2DCartesian) */ {
+class Mesh2DCartesian : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:proto_xpt_protobuf.Mesh2DCartesian) */ {
  public:
   Mesh2DCartesian();
   virtual ~Mesh2DCartesian();
@@ -374,28 +377,28 @@ class Mesh2DCartesian : public ::google::protobuf::Message /* @@protoc_insertion
 
   // accessors -------------------------------------------------------
 
-  // repeated .Mesh2DCartesian.Node nodes = 5;
+  // repeated .proto_xpt_protobuf.Mesh2DCartesian.Node nodes = 5;
   int nodes_size() const;
   void clear_nodes();
   static const int kNodesFieldNumber = 5;
-  ::Mesh2DCartesian_Node* mutable_nodes(int index);
-  ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Node >*
+  ::proto_xpt_protobuf::Mesh2DCartesian_Node* mutable_nodes(int index);
+  ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Node >*
       mutable_nodes();
-  const ::Mesh2DCartesian_Node& nodes(int index) const;
-  ::Mesh2DCartesian_Node* add_nodes();
-  const ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Node >&
+  const ::proto_xpt_protobuf::Mesh2DCartesian_Node& nodes(int index) const;
+  ::proto_xpt_protobuf::Mesh2DCartesian_Node* add_nodes();
+  const ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Node >&
       nodes() const;
 
-  // repeated .Mesh2DCartesian.Triangle triangles = 6;
+  // repeated .proto_xpt_protobuf.Mesh2DCartesian.Triangle triangles = 6;
   int triangles_size() const;
   void clear_triangles();
   static const int kTrianglesFieldNumber = 6;
-  ::Mesh2DCartesian_Triangle* mutable_triangles(int index);
-  ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Triangle >*
+  ::proto_xpt_protobuf::Mesh2DCartesian_Triangle* mutable_triangles(int index);
+  ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Triangle >*
       mutable_triangles();
-  const ::Mesh2DCartesian_Triangle& triangles(int index) const;
-  ::Mesh2DCartesian_Triangle* add_triangles();
-  const ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Triangle >&
+  const ::proto_xpt_protobuf::Mesh2DCartesian_Triangle& triangles(int index) const;
+  ::proto_xpt_protobuf::Mesh2DCartesian_Triangle* add_triangles();
+  const ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Triangle >&
       triangles() const;
 
   // float x_min = 1;
@@ -422,12 +425,12 @@ class Mesh2DCartesian : public ::google::protobuf::Message /* @@protoc_insertion
   float y_max() const;
   void set_y_max(float value);
 
-  // @@protoc_insertion_point(class_scope:Mesh2DCartesian)
+  // @@protoc_insertion_point(class_scope:proto_xpt_protobuf.Mesh2DCartesian)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Node > nodes_;
-  ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Triangle > triangles_;
+  ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Node > nodes_;
+  ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Triangle > triangles_;
   float x_min_;
   float x_max_;
   float y_min_;
@@ -451,13 +454,13 @@ inline void Mesh2DCartesian_Node::clear_x() {
   x_ = 0;
 }
 inline float Mesh2DCartesian_Node::x() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.Node.x)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.Node.x)
   return x_;
 }
 inline void Mesh2DCartesian_Node::set_x(float value) {
   
   x_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.Node.x)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.Node.x)
 }
 
 // float y = 2;
@@ -465,13 +468,13 @@ inline void Mesh2DCartesian_Node::clear_y() {
   y_ = 0;
 }
 inline float Mesh2DCartesian_Node::y() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.Node.y)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.Node.y)
   return y_;
 }
 inline void Mesh2DCartesian_Node::set_y(float value) {
   
   y_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.Node.y)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.Node.y)
 }
 
 // -------------------------------------------------------------------
@@ -486,25 +489,25 @@ inline void Mesh2DCartesian_Triangle::clear_nodes() {
   nodes_.Clear();
 }
 inline ::google::protobuf::uint32 Mesh2DCartesian_Triangle::nodes(int index) const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.Triangle.nodes)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.Triangle.nodes)
   return nodes_.Get(index);
 }
 inline void Mesh2DCartesian_Triangle::set_nodes(int index, ::google::protobuf::uint32 value) {
   nodes_.Set(index, value);
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.Triangle.nodes)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.Triangle.nodes)
 }
 inline void Mesh2DCartesian_Triangle::add_nodes(::google::protobuf::uint32 value) {
   nodes_.Add(value);
-  // @@protoc_insertion_point(field_add:Mesh2DCartesian.Triangle.nodes)
+  // @@protoc_insertion_point(field_add:proto_xpt_protobuf.Mesh2DCartesian.Triangle.nodes)
 }
 inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
 Mesh2DCartesian_Triangle::nodes() const {
-  // @@protoc_insertion_point(field_list:Mesh2DCartesian.Triangle.nodes)
+  // @@protoc_insertion_point(field_list:proto_xpt_protobuf.Mesh2DCartesian.Triangle.nodes)
   return nodes_;
 }
 inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
 Mesh2DCartesian_Triangle::mutable_nodes() {
-  // @@protoc_insertion_point(field_mutable_list:Mesh2DCartesian.Triangle.nodes)
+  // @@protoc_insertion_point(field_mutable_list:proto_xpt_protobuf.Mesh2DCartesian.Triangle.nodes)
   return &nodes_;
 }
 
@@ -517,13 +520,13 @@ inline void Mesh2DCartesian::clear_x_min() {
   x_min_ = 0;
 }
 inline float Mesh2DCartesian::x_min() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.x_min)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.x_min)
   return x_min_;
 }
 inline void Mesh2DCartesian::set_x_min(float value) {
   
   x_min_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.x_min)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.x_min)
 }
 
 // float x_max = 2;
@@ -531,13 +534,13 @@ inline void Mesh2DCartesian::clear_x_max() {
   x_max_ = 0;
 }
 inline float Mesh2DCartesian::x_max() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.x_max)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.x_max)
   return x_max_;
 }
 inline void Mesh2DCartesian::set_x_max(float value) {
   
   x_max_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.x_max)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.x_max)
 }
 
 // float y_min = 3;
@@ -545,13 +548,13 @@ inline void Mesh2DCartesian::clear_y_min() {
   y_min_ = 0;
 }
 inline float Mesh2DCartesian::y_min() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.y_min)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.y_min)
   return y_min_;
 }
 inline void Mesh2DCartesian::set_y_min(float value) {
   
   y_min_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.y_min)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.y_min)
 }
 
 // float y_max = 4;
@@ -559,72 +562,72 @@ inline void Mesh2DCartesian::clear_y_max() {
   y_max_ = 0;
 }
 inline float Mesh2DCartesian::y_max() const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.y_max)
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.y_max)
   return y_max_;
 }
 inline void Mesh2DCartesian::set_y_max(float value) {
   
   y_max_ = value;
-  // @@protoc_insertion_point(field_set:Mesh2DCartesian.y_max)
+  // @@protoc_insertion_point(field_set:proto_xpt_protobuf.Mesh2DCartesian.y_max)
 }
 
-// repeated .Mesh2DCartesian.Node nodes = 5;
+// repeated .proto_xpt_protobuf.Mesh2DCartesian.Node nodes = 5;
 inline int Mesh2DCartesian::nodes_size() const {
   return nodes_.size();
 }
 inline void Mesh2DCartesian::clear_nodes() {
   nodes_.Clear();
 }
-inline ::Mesh2DCartesian_Node* Mesh2DCartesian::mutable_nodes(int index) {
-  // @@protoc_insertion_point(field_mutable:Mesh2DCartesian.nodes)
+inline ::proto_xpt_protobuf::Mesh2DCartesian_Node* Mesh2DCartesian::mutable_nodes(int index) {
+  // @@protoc_insertion_point(field_mutable:proto_xpt_protobuf.Mesh2DCartesian.nodes)
   return nodes_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Node >*
+inline ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Node >*
 Mesh2DCartesian::mutable_nodes() {
-  // @@protoc_insertion_point(field_mutable_list:Mesh2DCartesian.nodes)
+  // @@protoc_insertion_point(field_mutable_list:proto_xpt_protobuf.Mesh2DCartesian.nodes)
   return &nodes_;
 }
-inline const ::Mesh2DCartesian_Node& Mesh2DCartesian::nodes(int index) const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.nodes)
+inline const ::proto_xpt_protobuf::Mesh2DCartesian_Node& Mesh2DCartesian::nodes(int index) const {
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.nodes)
   return nodes_.Get(index);
 }
-inline ::Mesh2DCartesian_Node* Mesh2DCartesian::add_nodes() {
-  // @@protoc_insertion_point(field_add:Mesh2DCartesian.nodes)
+inline ::proto_xpt_protobuf::Mesh2DCartesian_Node* Mesh2DCartesian::add_nodes() {
+  // @@protoc_insertion_point(field_add:proto_xpt_protobuf.Mesh2DCartesian.nodes)
   return nodes_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Node >&
+inline const ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Node >&
 Mesh2DCartesian::nodes() const {
-  // @@protoc_insertion_point(field_list:Mesh2DCartesian.nodes)
+  // @@protoc_insertion_point(field_list:proto_xpt_protobuf.Mesh2DCartesian.nodes)
   return nodes_;
 }
 
-// repeated .Mesh2DCartesian.Triangle triangles = 6;
+// repeated .proto_xpt_protobuf.Mesh2DCartesian.Triangle triangles = 6;
 inline int Mesh2DCartesian::triangles_size() const {
   return triangles_.size();
 }
 inline void Mesh2DCartesian::clear_triangles() {
   triangles_.Clear();
 }
-inline ::Mesh2DCartesian_Triangle* Mesh2DCartesian::mutable_triangles(int index) {
-  // @@protoc_insertion_point(field_mutable:Mesh2DCartesian.triangles)
+inline ::proto_xpt_protobuf::Mesh2DCartesian_Triangle* Mesh2DCartesian::mutable_triangles(int index) {
+  // @@protoc_insertion_point(field_mutable:proto_xpt_protobuf.Mesh2DCartesian.triangles)
   return triangles_.Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Triangle >*
+inline ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Triangle >*
 Mesh2DCartesian::mutable_triangles() {
-  // @@protoc_insertion_point(field_mutable_list:Mesh2DCartesian.triangles)
+  // @@protoc_insertion_point(field_mutable_list:proto_xpt_protobuf.Mesh2DCartesian.triangles)
   return &triangles_;
 }
-inline const ::Mesh2DCartesian_Triangle& Mesh2DCartesian::triangles(int index) const {
-  // @@protoc_insertion_point(field_get:Mesh2DCartesian.triangles)
+inline const ::proto_xpt_protobuf::Mesh2DCartesian_Triangle& Mesh2DCartesian::triangles(int index) const {
+  // @@protoc_insertion_point(field_get:proto_xpt_protobuf.Mesh2DCartesian.triangles)
   return triangles_.Get(index);
 }
-inline ::Mesh2DCartesian_Triangle* Mesh2DCartesian::add_triangles() {
-  // @@protoc_insertion_point(field_add:Mesh2DCartesian.triangles)
+inline ::proto_xpt_protobuf::Mesh2DCartesian_Triangle* Mesh2DCartesian::add_triangles() {
+  // @@protoc_insertion_point(field_add:proto_xpt_protobuf.Mesh2DCartesian.triangles)
   return triangles_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Mesh2DCartesian_Triangle >&
+inline const ::google::protobuf::RepeatedPtrField< ::proto_xpt_protobuf::Mesh2DCartesian_Triangle >&
 Mesh2DCartesian::triangles() const {
-  // @@protoc_insertion_point(field_list:Mesh2DCartesian.triangles)
+  // @@protoc_insertion_point(field_list:proto_xpt_protobuf.Mesh2DCartesian.triangles)
   return triangles_;
 }
 
@@ -638,6 +641,7 @@ Mesh2DCartesian::triangles() const {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace proto_xpt_protobuf
 
 // @@protoc_insertion_point(global_scope)
 
