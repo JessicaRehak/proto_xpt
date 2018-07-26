@@ -17,8 +17,31 @@ std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream) {
   new_mesh->set_x_min(import_mesh.x_min());
   new_mesh->set_y_max(import_mesh.y_max());
   new_mesh->set_y_min(import_mesh.y_min());
-  
+
+  for (size_t i = 0; i < import_mesh.nodes_size(); ++i) {
+    Coordinate position{import_mesh.nodes(i).x(), import_mesh.nodes(i).y()};
+    new_mesh->AddNode(i, position);
+  }
   return new_mesh;
+}
+
+Mesh &Mesh::AddNode(const int index, const Coordinate coordinate) {
+  nodes_.emplace(index, coordinate);
+  return *this;
+}
+
+std::string ToString(const Mesh mesh) {
+  // Prints information about the mesh
+  std::stringstream return_string;
+  return_string << "Mesh parameters\n"
+                << "x_min: " << mesh.get_x_min() << "\tx_max: "<< mesh.get_x_max()
+                << "\ny_min: " << mesh.get_y_min() << "\ty_max: " << mesh.get_y_max()
+                << std::endl;
+  return_string << "Nodes\n";
+  for (auto node : mesh.get_nodes()) {
+    return_string << node.first << ": " << node.second.to_str() << "\n";
+  }   
+  return return_string.str();
 }
 
 } //namespace mesh
