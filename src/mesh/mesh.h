@@ -19,7 +19,8 @@ class Mesh {
   //Cartesian Mesh
 
   explicit Mesh() {};
-  //explicit Mesh(float x_min, float x_max, float y_min, float y_max);
+  explicit Mesh(float x_min, float x_max, float y_min, float y_max) :
+      x_min_(x_min), x_max_(x_max), y_min_(y_min), y_max_(y_max) {};
   ~Mesh() = default;
   
   // Nodes
