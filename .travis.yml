@@ -14,6 +14,10 @@ language: cpp
 compiler: gcc
 
 before_install:
+ # Update GCC
+ - add-apt-repository ppa:jonathonf/gcc-7.1
+ - apt-get update
+ - apt-get install gcc-7 g++-7
  # Install protobuf 3
  - wget https://github.com/google/protobuf/releases/download/v3.6.0/protobuf-cpp-3.6.0.tar.gz
  - sudo tar xf protobuf-cpp-3.6.0.tar.gz
