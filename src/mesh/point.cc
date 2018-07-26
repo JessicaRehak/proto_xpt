@@ -8,11 +8,11 @@ Point::Point(const float x, const float y) {
   position = {x, y};
 }
 
-std::string Point::to_str(int precision) const {
+std::string to_string(const Point point, int precision) {
   // Print position with given precision
   std::ostringstream output;
   output << std::fixed << std::setprecision(precision)
-         << "(" << position.first << ", " << position.second << ")";
+         << "(" << point.position.first << ", " << point.position.second << ")";
   return output.str();
 }
 

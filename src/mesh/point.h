@@ -28,8 +28,6 @@ struct Point {
   float& y{position.second};
 
   float Length() const { return std::sqrt(std::pow(x, 2) + std::pow(y, 2)); };
-
-  std::string to_str(int precision = 2) const;
   
   // Arithmetic Operators
 
@@ -81,6 +79,9 @@ struct Point {
   Point(const Point&) = default;
   Point& operator=(const Point&) = default;
 };
+
+std::string to_string(const Point point, const int precision = 2);
+
 
 } // namespace mesh
 

@@ -39,7 +39,7 @@ std::string ToString(const Mesh mesh) {
                 << std::endl;
   return_string << "Nodes\n";
   for (auto node : mesh.get_nodes()) {
-    return_string << node.first << ": " << node.second.to_str() << "\n";
+    return_string << node.first << ": " << xpt::mesh::to_string(node.second) << "\n";
   }   
   return return_string.str();
 }

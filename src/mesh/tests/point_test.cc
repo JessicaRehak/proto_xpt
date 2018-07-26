@@ -82,11 +82,12 @@ TEST_F(PointTest, Accessors) {
 }
 
 TEST_F(PointTest, toStr_default) {
-  ASSERT_EQ(testPoint.to_str(), "(1.00, -10.00)");
+  ASSERT_EQ(xpt::mesh::to_string(testPoint), "(1.00, -10.00)");
 }
 
 TEST_F(PointTest, toStr_specific) {
-  ASSERT_EQ(testPoint.to_str(4), "(1.0000, -10.0000)");
+  std::string output = xpt::mesh::to_string(testPoint, 4);
+  ASSERT_EQ(output, "(1.0000, -10.0000)");
 }
 
 TEST_F(PointCompareTest, EquivOps) {
