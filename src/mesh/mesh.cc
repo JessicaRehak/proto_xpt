@@ -25,12 +25,12 @@ std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream) {
   return new_mesh;
 }
 
-Mesh &Mesh::AddNode(const int index, const Coordinate coordinate) {
+Mesh &Mesh::AddNode(int index, Coordinate coordinate) {
   nodes_.emplace(index, coordinate);
   return *this;
 }
 
-std::string ToString(const Mesh mesh) {
+std::string to_string(const Mesh &mesh) {
   // Prints information about the mesh
   std::stringstream return_string;
   return_string << "Mesh parameters\n"

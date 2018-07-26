@@ -66,7 +66,3 @@ TEST_F(MeshTest, MeshNodes) {
   xpt::mesh::Coordinate origin{0.0, 0.0};
   ASSERT_EQ(test_mesh->get_nodes().size(), 5);
 }
-
-TEST_F(MeshTest, MeshToString) {
-  std::cout << xpt::mesh::ToString(*test_mesh) << std::endl;
-}
