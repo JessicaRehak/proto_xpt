@@ -1,96 +1,97 @@
-#include "point.h"
+#include "node.h"
 
 namespace xpt {
 
 namespace mesh {
 
-Point::Point(const float x, const float y) {
+Node::Node(const float x, const float y, const float value, bool is_edge)
+    : value(value), is_edge(is_edge) {
   position = {x, y};
 }
 
-std::string to_string(const Point point, int precision) {
+std::string to_string(const Node node, int precision) {
   // Print position with given precision
   std::ostringstream output;
   output << std::fixed << std::setprecision(precision)
-         << "(" << point.position.first << ", " << point.position.second << ")";
+         << "(" << node.position.first << ", " << node.position.second << ")";
   return output.str();
 }
 
 // Arithmetic Operators
 
-Point Point::operator-() const {
-  Point temp{-(*this).x, -(*this).y};
+Node Node::operator-() const {
+  Node temp{-(*this).x, -(*this).y};
   return temp;
 }
 
-Point& Point::operator+=(const Coordinate &rhs) {
+Node& Node::operator+=(const Coordinate &rhs) {
   (*this).position.first += rhs.first;
   (*this).position.second += rhs.second;
   return *this;
 }
 
-Point& Point::operator+=(const Point &rhs) {
+Node& Node::operator+=(const Node &rhs) {
   (*this).position.first += rhs.position.first;
   (*this).position.second += rhs.position.second;
   return *this;
 }
 
-Point& Point::operator-=(const Coordinate &rhs) {
+Node& Node::operator-=(const Coordinate &rhs) {
   (*this).position.first -= rhs.first;
   (*this).position.second -= rhs.second;
   return *this;
 }
 
-Point& Point::operator-=(const Point &rhs) {
+Node& Node::operator-=(const Node &rhs) {
   *this += -rhs;
   return *this;
 }
 
-Point& Point::operator*=(const float rhs) {
+Node& Node::operator*=(const float rhs) {
   (*this).x *= rhs;
   (*this).y *= rhs;
   return *this;
 }
 
-Point& Point::operator/=(const float rhs) {
+Node& Node::operator/=(const float rhs) {
   (*this).x /= rhs;
   (*this).y /= rhs;
   return *this;
 }
 
-Point Point::operator+(const Coordinate &rhs) const {
-  Point temp(*this);
+Node Node::operator+(const Coordinate &rhs) const {
+  Node temp(*this);
   return temp += rhs;
 }
 
-Point Point::operator+(const Point &rhs) const {
-  Point temp(*this);
+Node Node::operator+(const Node &rhs) const {
+  Node temp(*this);
   return temp += rhs;
 }
 
-Point Point::operator-(const Coordinate &rhs) const {
-  Point temp(*this);
+Node Node::operator-(const Coordinate &rhs) const {
+  Node temp(*this);
   return temp -= rhs;
 }
 
-Point Point::operator-(const Point &rhs) const {
-  Point temp(*this);
+Node Node::operator-(const Node &rhs) const {
+  Node temp(*this);
   return temp -= rhs;
 }
 
-Point Point::operator*(const float rhs) const {
-  Point temp{rhs*(*this).x, rhs*(*this).y};
+Node Node::operator*(const float rhs) const {
+  Node temp{rhs*(*this).x, rhs*(*this).y};
   return temp;
 };
 
-Point Point::operator/(const float rhs) const {
-  Point temp{(*this).x/rhs, (*this).y/rhs};
+Node Node::operator/(const float rhs) const {
+  Node temp{(*this).x/rhs, (*this).y/rhs};
   return temp;
 };
 
 // Comparison Operators
 
-bool Point::operator<(const Point &rhs) const noexcept {
+bool Node::operator<(const Node &rhs) const noexcept {
   if (position.first > rhs.position.first) {
     return false;
   } else if (position.second > rhs.position.second) {
@@ -101,7 +102,7 @@ bool Point::operator<(const Point &rhs) const noexcept {
   return true;
 }
 
-bool Point::operator>(const Point &rhs) const noexcept {
+bool Node::operator>(const Node &rhs) const noexcept {
   if (position.first < rhs.position.first) {
     return false;
   } else if (position.second < rhs.position.second) {

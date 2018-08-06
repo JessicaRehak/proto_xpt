@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "mesh/point.h"
-
 #include <array>
 #include <iostream>
 
