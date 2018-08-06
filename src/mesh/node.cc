@@ -4,11 +4,6 @@ namespace xpt {
 
 namespace mesh {
 
-Node::Node(const float x, const float y, const float value, bool is_edge)
-    : value(value), is_edge(is_edge) {
-  position = {x, y};
-}
-
 std::string to_string(const Node node, int precision) {
   // Print position with given precision
   std::ostringstream output;

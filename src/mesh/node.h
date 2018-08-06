@@ -20,7 +20,8 @@ struct Node {
   
   Node(const Coordinate coordinates, const float value = 0, bool is_edge = false)
       : position(coordinates), value(value), is_edge(is_edge) {};
-  Node(const float, const float, const float value = 0, bool is_edge = false);
+  Node(const float x, const float y, const float value = 0, bool is_edge = false)
+      : value(value), is_edge(is_edge) { position = {x,y}; };
   ~Node() = default;
   
   Coordinate position;
