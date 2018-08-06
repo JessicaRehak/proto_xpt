@@ -66,3 +66,12 @@ TEST_F(MeshTest, MeshNodes) {
   xpt::mesh::Coordinate origin{0.0, 0.0};
   ASSERT_EQ(test_mesh->get_nodes().size(), 5);
 }
+
+TEST_F(MeshTest, PrintTest) {
+  std::string mesh_string = xpt::mesh::to_string(*test_mesh);
+  for (auto node : test_mesh->get_nodes()) {
+    std::string node_string = xpt::mesh::to_string(node.second);
+    EXPECT_THAT(mesh_string, ::testing::HasSubstr(node_string));
+  }
+  std::cout << mesh_string;
+}

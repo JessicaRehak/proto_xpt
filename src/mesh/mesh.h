@@ -47,7 +47,7 @@ class Mesh {
 };
 
 std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream);
-std::string ToString(const Mesh &mesh);
+std::string to_string(const Mesh &mesh);
 
 } //namespace mesh
 
