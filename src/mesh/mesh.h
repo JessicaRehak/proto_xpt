@@ -24,14 +24,14 @@ class Mesh {
   ~Mesh() = default;
   
   // Nodes
-  std::unordered_map<int, Node> get_nodes() const { return nodes_; };
-  Mesh &AddNode(int index, Coordinate coordinate);
+  const std::unordered_map<int, std::unique_ptr<Node>> &nodes() const { return nodes_; };
+  void AddNode(int index, std::unique_ptr<Node> node);
   
   // Mesh Parameters
-  float get_x_min() const {return x_min_;};
-  float get_x_max() const {return x_max_;};
-  float get_y_min() const {return y_min_;};
-  float get_y_max() const {return y_max_;};
+  float x_min() const {return x_min_;};
+  float x_max() const {return x_max_;};
+  float y_min() const {return y_min_;};
+  float y_max() const {return y_max_;};
   Mesh &set_x_min(float x_min) { x_min_ = x_min; return *this;};
   Mesh &set_x_max(float x_max) { x_max_ = x_max; return *this;};
   Mesh &set_y_min(float y_min) { y_min_ = y_min; return *this;};
@@ -39,15 +39,15 @@ class Mesh {
 
  
  private:
-  std::unordered_map<int, Node> nodes_;
+  std::unordered_map<int, std::unique_ptr<Node>> nodes_;
   float x_min_ = 0;
   float x_max_ = 0;
   float y_min_ = 0;
   float y_max_ = 0;
 };
 
-std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream);
-std::string to_string(const Mesh &mesh);
+//std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream);
+//std::string to_string(const Mesh &mesh);
 
 } //namespace mesh
 

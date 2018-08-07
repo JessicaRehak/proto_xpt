@@ -1,8 +1,6 @@
 #ifndef PROTO_XPT_MESH_NODE_H_
 #define PROTO_XPT_MESH_NODE_H_
 
-#include "nodeI.h"
-
 #include <cmath>
 
 #include <iomanip>
@@ -14,7 +12,10 @@ namespace xpt {
 
 namespace mesh {
 
-class Node : public NodeI{
+using Coordinate = std::pair<float, float>;
+
+class Node {
+  //2D Node to hold position and solution data
  private:
   Coordinate position_;
   float &x_ { position_.first };
@@ -22,7 +23,6 @@ class Node : public NodeI{
   float value_;
   bool is_edge_;
  public:
-  // 2D Node struct to hold position and solution data
   
   explicit Node(const Coordinate coordinates, const float value = 0,
                 bool is_edge = false)
@@ -32,11 +32,11 @@ class Node : public NodeI{
   ~Node() = default;
 
   // Setters and gutters
-  float x() const override { return position_.first; };
-  float y() const override { return position_.second; };
-  float value() const override {return value_; };
-  bool is_edge() const override {return is_edge_; };
-  Coordinate position() const override { return position_; };
+  float x() const { return position_.first; };
+  float y() const { return position_.second; };
+  float value() const {return value_; };
+  bool is_edge() const {return is_edge_; };
+  Coordinate position() const { return position_; };
 
   Node& set_x(float x);
   Node& set_y(float y);
