@@ -15,22 +15,35 @@ namespace mesh {
 
 using Coordinate = std::pair<float, float>;
 
-struct Node {
+class Node {
+ private:
+  Coordinate position_;
+  float &x_ { position_.first };
+  float &y_ { position_.second };
+  float value_;
+  bool is_edge_;
+ public:
   // 2D Node struct to hold position and solution data
   
-  Node(const Coordinate coordinates, const float value = 0, bool is_edge = false)
-      : position(coordinates), value(value), is_edge(is_edge) {};
+  explicit Node(const Coordinate coordinates, const float value = 0,
+                bool is_edge = false)
+      : position_(coordinates), value_(value), is_edge_(is_edge) {};
   Node(const float x, const float y, const float value = 0, bool is_edge = false)
-      : value(value), is_edge(is_edge) { position = {x,y}; };
+      : value_(value), is_edge_(is_edge) { position_ = {x,y}; };
   ~Node() = default;
-  
-  Coordinate position;
-  float& x{position.first};
-  float& y{position.second};
-  float value;
-  bool is_edge;
 
-  float Length() const { return std::sqrt(std::pow(x, 2) + std::pow(y, 2)); };
+  // Setters and gutters
+  float x() const { return position_.first; };
+  float y() const { return position_.second; };
+  float value() const {return value_; };
+  bool is_edge() const {return is_edge_; };
+  Coordinate position() const { return position_; };
+
+  Node& set_x(float x);
+  Node& set_y(float y);
+  Node& set_value(float value);
+  Node& set_is_edge(bool is_edge);
+  Node& set_position(Coordinate position);
   
   // Arithmetic Operators
 
@@ -56,13 +69,13 @@ struct Node {
   
   // Equivalence operators
   inline bool operator==(const Node &rhs) const noexcept {
-    return position == rhs.position; }
+    return position_ == rhs.position_; }
 
   inline bool operator!=(const Node &rhs) const noexcept {
-    return position != rhs.position; }
+    return position_ != rhs.position_; }
 
   // Checks x^2 + y^2 == r^2
-  bool operator==(float r) const { return (*this).Length() == r; };
+  bool operator==(float r) const;
   bool operator!=(float r) const { return !(*this == r); };
 
   // Comparison operators
@@ -84,7 +97,7 @@ struct Node {
 };
 
 std::string to_string(const Node node, const int precision = 2);
-
+float Length(const Node node);
 
 } // namespace mesh
 

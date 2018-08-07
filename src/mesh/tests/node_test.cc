@@ -46,43 +46,43 @@ class NodeShiftTest : public NodeTest {
 
   // For ease of writing tests these are stored in an array
   std::array<xpt::mesh::Coordinate, 5>
-  testCoord_s = {{testNode.position, testCoord_1s, testCoord_2s,
+  testCoord_s = {{testNode.position(), testCoord_1s, testCoord_2s,
                   testCoord_3s, testCoord_4s}};
 
   std::array<xpt::mesh::Coordinate, 5>
-  testCoord_m = {{origin, testNode.position, testCoord_2m,
+  testCoord_m = {{origin, testNode.position(), testCoord_2m,
                   testCoord_3m, testCoord_4m}};
 };
 
 TEST_F(NodeTest, PairConstructor) {
   xpt::mesh::Coordinate position{1.0, -4.0};
   xpt::mesh::Node testNode_c{position};
-  ASSERT_EQ(testNode_c.position, position);
-  ASSERT_FALSE(testNode_c.is_edge);
-  ASSERT_EQ(testNode_c.value, 0);
+  ASSERT_EQ(testNode_c.position(), position);
+  ASSERT_FALSE(testNode_c.is_edge());
+  ASSERT_EQ(testNode_c.value(), 0);
  }
 
 TEST_F(NodeTest, FloatConstructor) {
   xpt::mesh::Coordinate position{1.0, -4.0};
   xpt::mesh::Node testNode_c{1.0, -4.0};
-  ASSERT_EQ(testNode_c.position, position);
-  ASSERT_FALSE(testNode_c.is_edge);
-  ASSERT_EQ(testNode_c.value, 0);
+  ASSERT_EQ(testNode_c.position(), position);
+  ASSERT_FALSE(testNode_c.is_edge());
+  ASSERT_EQ(testNode_c.value(), 0);
 }
 
 TEST_F(NodeTest, Length) {
   float ans = std::sqrt(101);
-  ASSERT_EQ(testNode.Length(), ans);
+  ASSERT_EQ(xpt::mesh::Length(testNode), ans);
 }
 
 TEST_F(NodeTest, Accessors) {
   xpt::mesh::Coordinate ans{3.0, -10.0};
   xpt::mesh::Coordinate ans2{3.0, 12.7};
   
-  testNode.x = 3.0;
-  ASSERT_EQ(testNode.position, ans);
-  testNode.y = 12.7;
-  ASSERT_EQ(testNode.position, ans2);
+  testNode.set_x(3.0);
+  ASSERT_EQ(testNode.position(), ans);
+  testNode.set_y(12.7);
+  ASSERT_EQ(testNode.position(), ans2);
 }
 
 TEST_F(NodeTest, toStr_default) {
@@ -141,26 +141,26 @@ TEST_F(NodeShiftTest, UnaryMinusOp) {
 
 TEST_F(NodeShiftTest, PlusMinusBinOpsPair) {
   testNode += p2;
-  ASSERT_EQ(testNode.position, testCoord_s[1]);
+  ASSERT_EQ(testNode.position(), testCoord_s[1]);
   (testNode += p2) += p2;
-  ASSERT_EQ(testNode.position, testCoord_s[3]);
+  ASSERT_EQ(testNode.position(), testCoord_s[3]);
   (testNode -= p2) -= p2;
-  ASSERT_EQ(testNode.position, testCoord_s[1]);
+  ASSERT_EQ(testNode.position(), testCoord_s[1]);
   testNode -= p2;
-  ASSERT_EQ(testNode.position, testCoord_s[0]);
+  ASSERT_EQ(testNode.position(), testCoord_s[0]);
 }
 
 TEST_F(NodeShiftTest, PlusMinusBinOpsNode) {
 
   testNode += shift_node;
-  ASSERT_EQ(testNode.position, testCoord_s[1]);
+  ASSERT_EQ(testNode.position(), testCoord_s[1]);
   // Check chaining
   (testNode += shift_node) += shift_node;
-  ASSERT_EQ(testNode.position, testCoord_s[3]);
+  ASSERT_EQ(testNode.position(), testCoord_s[3]);
   (testNode -= shift_node) -= shift_node;
-  ASSERT_EQ(testNode.position, testCoord_s[1]);
+  ASSERT_EQ(testNode.position(), testCoord_s[1]);
   testNode -= shift_node;
-  ASSERT_EQ(testNode.position, testCoord_s[0]);
+  ASSERT_EQ(testNode.position(), testCoord_s[0]);
 }
 
 TEST_F(NodeShiftTest, PlusMinusOpsPair) {
@@ -169,10 +169,10 @@ TEST_F(NodeShiftTest, PlusMinusOpsPair) {
   xpt::mesh::Node zero_node = new_node - p2;
   xpt::mesh::Node zero_chain_node = (chain_node - p2) - p2;
   
-  ASSERT_EQ(new_node.position, testCoord_s[1]);
-  ASSERT_EQ(chain_node.position, testCoord_s[2]);
-  ASSERT_EQ(zero_node.position, testCoord_s[0]);
-  ASSERT_EQ(zero_chain_node.position, testCoord_s[0]);
+  ASSERT_EQ(new_node.position(), testCoord_s[1]);
+  ASSERT_EQ(chain_node.position(), testCoord_s[2]);
+  ASSERT_EQ(zero_node.position(), testCoord_s[0]);
+  ASSERT_EQ(zero_chain_node.position(), testCoord_s[0]);
 }
 
 TEST_F(NodeShiftTest, PlusMinusOpsNode) {
@@ -181,10 +181,10 @@ TEST_F(NodeShiftTest, PlusMinusOpsNode) {
   xpt::mesh::Node zero_node = new_node - shift_node;
   xpt::mesh::Node zero_chain_node = (chain_node - shift_node) - shift_node;
   
-  ASSERT_EQ(new_node.position, testCoord_s[1]);
-  ASSERT_EQ(chain_node.position, testCoord_s[2]);
-  ASSERT_EQ(zero_node.position, testCoord_s[0]);
-  ASSERT_EQ(zero_chain_node.position, testCoord_s[0]);
+  ASSERT_EQ(new_node.position(), testCoord_s[1]);
+  ASSERT_EQ(chain_node.position(), testCoord_s[2]);
+  ASSERT_EQ(zero_node.position(), testCoord_s[0]);
+  ASSERT_EQ(zero_chain_node.position(), testCoord_s[0]);
 }
 
 TEST_F(NodeShiftTest, MultiplyOps) {
@@ -192,31 +192,31 @@ TEST_F(NodeShiftTest, MultiplyOps) {
   xpt::mesh::Node origin = testNode * 0.0;
   xpt::mesh::Node chain_node = (testNode * 2) * 2;
 
-  ASSERT_EQ(new_node.position, testCoord_m[2]);
-  ASSERT_EQ(origin.position, testCoord_m[0]);
-  ASSERT_EQ(chain_node.position, testCoord_m[4]);
+  ASSERT_EQ(new_node.position(), testCoord_m[2]);
+  ASSERT_EQ(origin.position(), testCoord_m[0]);
+  ASSERT_EQ(chain_node.position(), testCoord_m[4]);
 }
 
 TEST_F(NodeShiftTest, MultiplyEqOps) {
   testNode *= 2;
-  ASSERT_EQ(testNode.position, testCoord_m[2]);
+  ASSERT_EQ(testNode.position(), testCoord_m[2]);
   (testNode *= 0.5) *= 2;
-  ASSERT_EQ(testNode.position, testCoord_m[2]);
+  ASSERT_EQ(testNode.position(), testCoord_m[2]);
 }
 
 TEST_F(NodeShiftTest, DivideOps) {
   xpt::mesh::Node new_node = testNode / 0.5;
   xpt::mesh::Node chain_node = (testNode / 0.5) / 0.5;
 
-  ASSERT_EQ(new_node.position, testCoord_m[2]);
-  ASSERT_EQ(chain_node.position, testCoord_m[4]);
+  ASSERT_EQ(new_node.position(), testCoord_m[2]);
+  ASSERT_EQ(chain_node.position(), testCoord_m[4]);
 }
 
 
 TEST_F(NodeShiftTest, DivideEqOps) {
   testNode /= 0.5;
-  ASSERT_EQ(testNode.position, testCoord_m[2]);
+  ASSERT_EQ(testNode.position(), testCoord_m[2]);
   (testNode /= 0.5) /= 2;
-  ASSERT_EQ(testNode.position, testCoord_m[2]);
+  ASSERT_EQ(testNode.position(), testCoord_m[2]);
 }
 
