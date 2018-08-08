@@ -3,6 +3,7 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <google/protobuf/text_format.h>
 
 #include <array>
 #include <iostream>
@@ -45,18 +46,19 @@ void MeshProtoTest::SetUp() {
     new_node->set_y(pair.second);
   }
 
+  std::array<std::tuple<int, int, int>, 4>
+      triangles{std::make_tuple(0, 1, 5), std::make_tuple(0, 2, 5),
+        std::make_tuple(4, 1, 5), std::make_tuple(4,2,5)};
+  
+  for (auto triangle : triangles) {
+    ProtoTriangle *new_triangle = test_proto_mesh_.add_triangles();
+    new_triangle->add_nodes(std::get<0>(triangle));
+    new_triangle->add_nodes(std::get<1>(triangle));
+    new_triangle->add_nodes(std::get<2>(triangle)); 
+  }
+  
   input_string_stream_.str(test_proto_mesh_.SerializeAsString());
-
-  // std::array<std::tuple<int, int, int>, 4>
-  //     triangles{std::make_tuple(0, 1, 5), std::make_tuple(0, 2, 5),
-  //       std::make_tuple(4, 1, 5), std::make_tuple(4,2,5)};
-
-  // for (auto triangle : triangles) {
-  //   ProtoTriangle *new_triangle = test_proto_mesh_.add_triangles();
-  //   new_triangle->set_nodes(0, std::get<0>(triangle));
-  //   new_triangle->set_nodes(1, std::get<1>(triangle));
-  //   new_triangle->set_nodes(2, std::get<2>(triangle)); 
-  // }
+  
   test_mesh = xpt::mesh::ImportMeshFromStream(input_string_stream_);
 
 }
@@ -95,7 +97,9 @@ TEST_F(MeshProtoTest, MeshNodes) {
 }
 
 TEST_F(MeshProtoTest, MeshPrint) {
+
   std::string mesh_string = xpt::mesh::to_string(*test_mesh);
+  std::cout << mesh_string << std::endl;
   for (const auto &node : test_mesh->nodes()) {
     std::string node_string = xpt::mesh::to_string(*node.second);
     EXPECT_THAT(mesh_string, ::testing::HasSubstr(node_string));

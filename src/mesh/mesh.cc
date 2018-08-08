@@ -34,6 +34,18 @@ std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream) {
     std::unique_ptr<Node> new_node = std::make_unique<Node>(position);
     new_mesh->AddNode(i, std::move(new_node));
   }
+
+  
+  for (size_t i = 0; i < import_mesh.triangles_size(); ++i) {
+    Triangle new_triangle;
+    for (auto cit = import_mesh.triangles(i).nodes().cbegin();
+         cit < import_mesh.triangles(i).nodes().cend();
+         ++cit) {
+      new_triangle.push_back(*cit);
+    }
+    new_mesh->AddTriangle(new_triangle);
+  }  
+  
   return new_mesh;
 }
 
@@ -47,7 +59,16 @@ std::string to_string(const Mesh &mesh) {
   return_string << "Nodes\n";
   for (const auto &node : mesh.nodes()) {
     return_string << node.first << ": " << xpt::mesh::to_string(*node.second) << "\n";
-  }   
+  }
+  return_string << "Elements\n";
+  for (auto triangle : mesh.triangles()) {
+    for (int val : triangle) {
+      return_string << val << " ";
+    }
+    return_string << "\n";
+  }
+      
+  
   return return_string.str();
 }
 

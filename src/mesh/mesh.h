@@ -16,7 +16,7 @@ namespace xpt {
 
 namespace mesh {
 
-using Triangle = std::array<int, 3>;
+using Triangle = std::vector<int>;
 
 class Mesh {
  public:
