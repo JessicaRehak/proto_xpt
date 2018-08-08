@@ -10,7 +10,10 @@ void Mesh::AddNode(int index, std::unique_ptr<Node> node) {
 }
 
 const Node &Mesh::GetNode(int index) const {
-  return *(nodes_.find(index)->second);
+  auto node_ptr = nodes_.find(index);
+  if (node_ptr == nodes_.end())
+    throw std::runtime_error("Bad node index: " + std::to_string(index));
+  return *(node_ptr->second);
 }
 
 // Non-member functions

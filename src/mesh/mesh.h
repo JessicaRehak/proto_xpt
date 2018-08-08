@@ -1,9 +1,11 @@
 #ifndef PROTO_XPT_MESH_MESH_H_
 #define PROTO_XPT_MESH_MESH_H_
 
+#include <array>
 #include <stdexcept>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -13,6 +15,8 @@
 namespace xpt {
 
 namespace mesh {
+
+using Triangle = std::array<int, 3>;
 
 class Mesh {
  public:
@@ -24,9 +28,14 @@ class Mesh {
   ~Mesh() = default;
   
   // Nodes and node information
-  const std::unordered_map<int, std::unique_ptr<Node>> &nodes() const { return nodes_; };
   void AddNode(int index, std::unique_ptr<Node> node);
   const Node &GetNode(int index) const;
+  const std::unordered_map<int, std::unique_ptr<Node>> &nodes() const
+  { return nodes_; };
+
+  // Triangles and information
+  void AddTriangle(Triangle triangle) { triangles_.push_back(triangle); };
+  std::vector<Triangle> triangles() const { return triangles_; };
   
   // Mesh Parameters
   float x_min() const {return x_min_;};
@@ -41,6 +50,7 @@ class Mesh {
  
  private:
   std::unordered_map<int, std::unique_ptr<Node>> nodes_;
+  std::vector<Triangle> triangles_;
   float x_min_ = 0;
   float x_max_ = 0;
   float y_min_ = 0;
