@@ -63,6 +63,13 @@ TEST_F(MeshIntTest, AddNode) {
   ASSERT_EQ(test_mesh->nodes().find(0)->second->y(), 0.0);
 }
 
+TEST_F(MeshIntTest, GetNode) {
+  auto new_node = std::make_unique<xpt::mesh::Node>(-2.3, 100.3);
+  test_mesh->AddNode(0, std::move(new_node));
+  EXPECT_FLOAT_EQ(test_mesh->GetNode(0).x(), -2.3);
+  EXPECT_FLOAT_EQ(test_mesh->GetNode(0).y(), 100.3);
+}
+
 // TEST_F(MeshIntTest, MeshProperties) {
 //   ASSERT_EQ(test_mesh->get_x_min(), -1.0);
 //   ASSERT_EQ(test_mesh->get_x_max(), 5.0);

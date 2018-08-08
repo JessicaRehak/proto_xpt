@@ -23,9 +23,10 @@ class Mesh {
       x_min_(x_min), x_max_(x_max), y_min_(y_min), y_max_(y_max) {};
   ~Mesh() = default;
   
-  // Nodes
+  // Nodes and node information
   const std::unordered_map<int, std::unique_ptr<Node>> &nodes() const { return nodes_; };
   void AddNode(int index, std::unique_ptr<Node> node);
+  const Node &GetNode(int index) const;
   
   // Mesh Parameters
   float x_min() const {return x_min_;};

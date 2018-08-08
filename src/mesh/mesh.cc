@@ -9,6 +9,10 @@ void Mesh::AddNode(int index, std::unique_ptr<Node> node) {
   nodes_.insert({index, std::move(node)});
 }
 
+const Node &Mesh::GetNode(int index) const {
+  return *(nodes_.find(index)->second);
+}
+
 // Non-member functions
 
 // std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream) {
