@@ -47,7 +47,6 @@ class Mesh {
   Mesh &set_y_min(float y_min) { y_min_ = y_min; return *this;};
   Mesh &set_y_max(float y_max) { y_max_ = y_max; return *this;};
 
- 
  private:
   std::unordered_map<int, std::unique_ptr<Node>> nodes_;
   std::vector<Triangle> triangles_;
@@ -57,8 +56,8 @@ class Mesh {
   float y_max_ = 0;
 };
 
-//std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream);
-//std::string to_string(const Mesh &mesh);
+std::unique_ptr<Mesh> ImportMeshFromStream(std::istream &input_stream);
+std::string to_string(const Mesh &mesh);
 
 } //namespace mesh
 
