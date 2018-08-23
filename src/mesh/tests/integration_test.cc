@@ -8,6 +8,7 @@
 #include <array>
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <utility>
 
 #include "../mesh2dcartesian.pb.h"
@@ -97,11 +98,18 @@ TEST_F(MeshProtoTest, MeshNodes) {
 }
 
 TEST_F(MeshProtoTest, MeshPrint) {
-
   std::string mesh_string = xpt::mesh::to_string(*test_mesh);
   std::cout << mesh_string << std::endl;
   for (const auto &node : test_mesh->nodes()) {
     std::string node_string = xpt::mesh::to_string(*node.second);
     EXPECT_THAT(mesh_string, ::testing::HasSubstr(node_string));
+  }
+  for (const auto triangle : test_mesh->triangles()) {
+    std::ostringstream triangle_stream;
+    for (const auto val : triangle)
+      triangle_stream << val << " ";
+    std::string result = triangle_stream.str();
+    result.pop_back();
+    EXPECT_THAT(mesh_string, ::testing::HasSubstr(result));
   }
 }

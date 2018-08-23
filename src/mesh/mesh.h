@@ -35,7 +35,7 @@ class Mesh {
 
   // Triangles and information
   void AddTriangle(Triangle triangle) { triangles_.push_back(triangle); };
-  std::vector<Triangle> triangles() const { return triangles_; };
+  const std::vector<Triangle> triangles() const { return triangles_; };
   
   // Mesh Parameters
   float x_min() const {return x_min_;};

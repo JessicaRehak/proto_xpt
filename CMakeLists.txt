@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 set (CMAKE_CXX_STANDARD 14)
 project(proto_xpt)
+set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set (GCC_COVERAGE_COMPILE_FLAGS "-coverage -fprofile-arcs -ftest-coverage")
 set (GCC_COVERAGE_LINK_FLAGS    "-coverage -lgcov")
